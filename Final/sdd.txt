@@ -1,0 +1,88 @@
+if(titleText.getText() != "" && authorText.getText() == "" && genreText.getText() =="" && pubDateText.getText() == "") {
+					String titleToFind = titleText.getText();
+					String displayText = "";
+					bookList.removeAll();
+					while(myBookshelf.size() > 0) {
+						Book currentBook = myBookshelf.pop();
+						if(searchByTitle(titleToFind, currentBook)) {
+							myBookQueue.add(currentBook);
+							bookList.add(currentBook.getTitle());
+						}
+					}
+					fillBookshelf();
+				}
+				
+				//search by Author
+				else if(titleText.getText() == "" && authorText.getText() != "" && genreText.getText() =="" && pubDateText.getText() == "") {
+					String authorToFind = authorText.getText();
+					String displayText = "";
+					bookList.removeAll();
+					while(myBookshelf.size() > 0) {
+						Book currentBook = myBookshelf.pop();
+						if(searchByAuthor(authorToFind, currentBook)) {
+							myBookQueue.add(currentBook);
+							bookList.add(currentBook.getTitle());
+						}
+					}
+					fillBookshelf();
+				}
+				//search by Genre
+				else if(titleText.getText() == "" && authorText.getText() == "" && genreText.getText() !="" && pubDateText.getText() == "") {
+					String genreToFind = genreText.getText();
+					String displayText = "";
+					bookList.removeAll();
+					while(myBookshelf.size() > 0) {
+						Book currentBook = myBookshelf.pop();
+						if(searchByGenre(genreToFind, currentBook)) {
+							myBookQueue.add(currentBook);
+							bookList.add(currentBook.getTitle());
+						}
+					}
+					fillBookshelf();
+				}
+				//search by Publication Date
+				else if(titleText.getText() == "" && authorText.getText() == "" && genreText.getText() =="" && pubDateText.getText() != "") {
+						String pubDateToFind = pubDateText.getText();
+						if(pubDateToFind.matches(".*[a-z].*"))
+						{
+							String displayText = "";
+							errorLabel.setText("Publication Date should be a number");
+							return;
+						}
+						else {
+							String displayText = "";
+							bookList.removeAll();
+							while(myBookshelf.size() > 0) {
+								Book currentBook = myBookshelf.pop();
+								if(searchByPubDate(pubDateToFind, currentBook)) {
+									myBookQueue.add(currentBook);
+									bookList.add(currentBook.getTitle());
+								}
+							}
+						}
+						fillBookshelf();
+				}
+				
+				//search by Author and Genre
+				else if(titleText.getText() == "" && authorText.getText() != "" && genreText.getText() !="" && pubDateText.getText() == "") {
+					String authorToFind = authorText.getText();
+					String genreToFind = genreText.getText();
+					String displayText = "";
+					bookList.removeAll();
+					while(myBookshelf.size() > 0) {
+						Book currentBook = myBookshelf.pop();
+						if(searchByAuthor(authorToFind, currentBook)) {
+							if(searchByGenre(genreToFind, currentBook)) {
+								myBookQueue.add(currentBook);
+								bookList.add(currentBook.getTitle());
+							}	
+						}
+					}
+					fillBookshelf();
+				}
+				
+				
+				
+				
+				
+				
